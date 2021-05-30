@@ -19,34 +19,26 @@ namespace CsharpStudyPro.Controllers
             _logger = logger;
         }
 
-        //[HttpGet]
-        //public IEnumerable<HelloCSharp> Get()
-        //{
-        //    var rng = new Random();
-        //    return Enumerable.Range(1, 5).Select(index => new HelloCSharp
-        //    {
-        //        Name = "Name" + index
-        //    }).ToArray();
-        //}
-
         [HttpGet]
+        [Route("/test")]
         public void Get()
         {
             var numbers = new List<int> { 1, 3, 5, 7, 9 };
-            //var numbers = new int[] { 1, 3, 5, 7, 9 };
-
-            //foreach (var num in numbers)
-            //{
-            //    Console.WriteLine(num);
-            //}
-
-            //var s = "hello";
 
             var enumertor = numbers.GetEnumerator();
             while (enumertor.MoveNext())
             {
                 Console.WriteLine($"{enumertor.Current}");
             }
+        }
+
+
+        [HttpGet]
+        [Route("/hh")]
+        public string GetResult()
+        {
+            string res = "res";
+            return res;
         }
     }
 
