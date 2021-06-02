@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ProgramerStudy
@@ -22,6 +23,22 @@ namespace ProgramerStudy
 
     }
 
+    public class VariableReference : Expression
+    {
+        string _name;
+        public VariableReference(string name)
+        {
+            _name = name;
+        }
+
+        public override double Evaluate(Dictionary<string, object> vars)
+        {
+            object value = vars[_name] ?? throw new Exception($"Unkown variable: {_name}");
+            return Convert.ToDouble(value);
+        }
+    }
+
+
     public class Operation : Expression
     {
         Expression _left;
@@ -37,7 +54,16 @@ namespace ProgramerStudy
 
         public override double Evaluate(Dictionary<string, object> vars)
         {
-            throw new System.NotImplementedException();
+            double res = 0;
+            switch( _op)
+            {
+                case '+':   res = _left.Evaluate(vars) + _right.Evaluate(vars); break;
+                case '-':   res = _left.Evaluate(vars) - _right.Evaluate(vars); break;
+                case '*':   res = _left.Evaluate(vars) * _right.Evaluate(vars); break;
+                case '/':   res = _left.Evaluate(vars) / _right.Evaluate(vars); break;
+                default: throw new System.Exception("Unkown operator");
+            }
+            return res;
         }
     }
 }
