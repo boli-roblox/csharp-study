@@ -37,6 +37,7 @@ namespace CsharpStudyPro
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

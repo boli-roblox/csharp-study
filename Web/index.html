@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        ws = new WebSocket("ws://www.singlesword.local:50000");
+        ws.onopen = function () {
+            ws.send('websocekt测试');
+        };
+        ws.onmessage = function (e) {
+            var messageHtml = "<div>" + e.data + "</div>";
+            document.getElementById("log-box").innerHTML += messageHtml;
+        };
+    </script>
+</head>
+<body>
+    <p>Test information:</p>
+    <div id="log-box"></div>
+</body>
+</html>
